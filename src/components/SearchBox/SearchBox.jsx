@@ -1,5 +1,9 @@
 import s from "./SearchBox.module.css";
-const SearchBox = ({ setSearchContact }) => {
+import { useDispatch } from "react-redux";
+import { setSearchContact } from "../../redux/filtersSlice";
+
+const SearchBox = () => {
+  const dispatch = useDispatch();
   return (
     <div className={s.addContact}>
       <label htmlFor="findId">Find contacts by name</label>
@@ -10,7 +14,7 @@ const SearchBox = ({ setSearchContact }) => {
         id="findId"
         placeholder="Enter name..."
         onChange={(e) => {
-          setSearchContact(e.target.value);
+          dispatch(setSearchContact(e.target.value));
         }}
       />
     </div>

@@ -3,21 +3,29 @@ import { useId } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 
 import * as Yup from "yup";
+// ********
+import { nanoid } from "nanoid";
 
 const ContactForm = ({ handleAddContact }) => {
   const nameId = useId();
   const numberId = useId();
 
-  const handleSubmit = (values, actions) => {
-    handleAddContact(values);
-
-    actions.resetForm();
-  };
-
   const initialValues = {
     name: "",
     number: "",
   };
+
+  const handleSubmit = (values, actions) => {
+    handleAddContact({ id: nanoid(), name: values.name, phone: values.number });
+    actions.resetForm();
+  };
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   handleAddContact({ id: nanoid(), name, phone });
+  //   setName("");
+  //   setPhone("");
+  // };
 
   const FeedbackSchema = Yup.object().shape({
     name: Yup.string()
