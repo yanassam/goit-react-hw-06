@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createSelector } from "@reduxjs/toolkit";
 
 const initialState = {
   items: [
@@ -32,6 +32,14 @@ export const { addContact, deleteContact } = contactsSlice.actions;
 // Селекторы ???
 export const selectContacts = (state) => state.contacts.items;
 
+export const selectFilteredContacts = createSelector(
+  [selectContacts, (state) => state.filters.name],
+  (contacts, filter) => {
+    return contacts.filter((contact) =>
+      contact.name.toLowerCase().includes(filter.toLowerCase())
+    );
+  }
+);
+
 // reducer слайсу
-// export const contactsReducer = contactsSlice.reducer;
-export default contactsSlice.reducer;
+export const contactsReducer = contactsSlice.reducer;
