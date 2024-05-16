@@ -5,11 +5,10 @@ import * as Yup from "yup";
 // ********
 import { nanoid } from "nanoid";
 import { addContact } from "../../redux/contactsSlice";
-import { useSelector } from "react-redux";
+
 import { useDispatch } from "react-redux";
 
 const ContactForm = () => {
-  // console.log(addContact());
   const dispatch = useDispatch();
   const nameId = useId();
   const numberId = useId();

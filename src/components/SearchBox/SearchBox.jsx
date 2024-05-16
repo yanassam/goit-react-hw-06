@@ -14,8 +14,8 @@ const SearchBox = () => {
         name="find"
         id="findId"
         placeholder="Enter name..."
-        onChange={(e) => {
-          dispatch(changeFilter(e.target.value));
+        onChange={(event) => {
+          dispatch(changeFilter(event.target.value));
         }}
       />
     </div>
