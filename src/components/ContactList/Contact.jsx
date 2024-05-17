@@ -2,8 +2,15 @@ import s from "./Contact.module.css";
 
 import { IoCallSharp } from "react-icons/io5";
 import { IoAccessibility } from "react-icons/io5";
+import { useDispatch } from "react-redux";
+import { deleteContact } from "../../redux/contactsSlice";
 
-const Contact = ({ contact, onDeleteContact }) => {
+const Contact = ({ contact }) => {
+  const dispatch = useDispatch();
+  // const handleDelete = () => {
+  //   dispatch(deleteContact(contact.id));
+  // };
+
   return (
     <li className={s.form} key={contact.id}>
       <div className={s.contact}>
@@ -19,7 +26,7 @@ const Contact = ({ contact, onDeleteContact }) => {
       <div>
         <button
           className={s.buttonDel}
-          onClick={() => onDeleteContact(contact.id)}
+          onClick={() => dispatch(deleteContact(contact.id))}
         >
           Delete
         </button>
